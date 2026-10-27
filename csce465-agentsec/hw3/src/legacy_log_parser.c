@@ -49,3 +49,10 @@ static void parse_log(const char *path) {
     vulnerable_copy(input, copy_len);
     free(input);
 }
+
+int main(int argc, char *argv[]) {
+    if (argc != 2) {return EXIT_FAILURE;}
+
+    parse_log(argv[1]);
+    return EXIT_SUCCESS;
+}
