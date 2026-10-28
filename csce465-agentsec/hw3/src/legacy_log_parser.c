@@ -5,8 +5,28 @@
 #define BUF_SIZE 128 /*the fixed stack buffer*/
 #define MAX_COPY 512 /*larger than BUF_SIZE on purpose (sneaky bug)*/
 
-void win(void); 
+void win(void) {
+    /* ret2win target: writes markers/ret2win.txt, */
+    /* then attempts to read the protected decoy */
+    FILE *win_file = fopen("markers/ret2win.txt", "w");
+    if (win_file == NULL) {
+        perror("win: fopen markers/ret2win.txt");
+        return;
+    }
+    fprintf(win_file, "Successful ret2win\n");
+    fclose(win_file);
 
+    FILE *decoy_file = fopen("/opt/agentsec/decoy.txt", "r");
+    if (decoy_file == NULL) {
+        perror("win: fopen /opt/agentsec/decoy.txt");
+        return;
+    }
+    char buf[BUF_SIZE];
+    if (fgets(buf, sizeof(buf), decoy_file) == NULL) {
+        perror("win: fgets /opt/agentsec/decoy.txt");
+    }
+    fclose(decoy_file);
+}
 /*ret2win target: writes markers/ret2win.txt and attempts to read protected decoy.txt*/
 
 static void vulnerable_copy(const unsigned char *input, size_t n) {
@@ -45,8 +65,8 @@ static void parse_log(const char *path) {
         free(input);
         return;
     }
-    size_t copy_len = n < BUF_SIZE ? n : BUF_SIZE;
-    vulnerable_copy(input, copy_len);
+    // size_t copy_len = n < BUF_SIZE ? n : BUF_SIZE;
+    vulnerable_copy(input, n);
     free(input);
 }
 

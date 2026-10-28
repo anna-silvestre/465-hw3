@@ -1,3 +1,45 @@
 TODO
 
 little info dump space as a placeholder for the report pdf
+
+
+TASK 1
+
+anna_s@anna-465:~/465-hw3/csce465-agentsec/hw3$ checksec --file=./src/legacy_log_parser
+RELRO           STACK CANARY      NX            PIE             RPATH      RUNPATH      Symbols         FORTIFY     Fortified       Fortifiable     FILE
+Partial RELRO   No canary found   NX enabled    No PIE          No RPATH   No RUNPATH   110 Symbols       No0               3               ./src/legacy_log_parser
+
+
+anna_s@anna-465:~/465-hw3/csce465-agentsec/hw3$ gdb --args ./src/legacy_log_parser ./files/example.txt
+GNU gdb (Ubuntu 15.1-1ubuntu1~24.04.1) 15.1
+Copyright (C) 2024 Free Software Foundation, Inc.
+License GPLv3+: GNU GPL version 3 or later <http://gnu.org/licenses/gpl.html>
+This is free software: you are free to change and redistribute it.
+There is NO WARRANTY, to the extent permitted by law.
+Type "show copying" and "show warranty" for details.
+This GDB was configured as "aarch64-linux-gnu".
+Type "show configuration" for configuration details.
+For bug reporting instructions, please see:
+<https://www.gnu.org/software/gdb/bugs/>.
+Find the GDB manual and other documentation resources online at:
+--Type <RET> for more, q to quit, c to continue without paging--
+    <http://www.gnu.org/software/gdb/documentation/>.
+
+For help, type "help".
+Type "apropos word" to search for commands related to "word"...
+Reading symbols from ./src/legacy_log_parser...
+(gdb) b win
+Breakpoint 1 at 0x400930: file src/legacy_log_parser.c, line 11.
+(gdb) run
+Starting program: /home/anna_s/465-hw3/csce465-agentsec/hw3/src/legacy_log_parser ./files/example.txt
+
+This GDB supports auto-downloading debuginfo from the following URLs:
+  <https://debuginfod.ubuntu.com>
+Enable debuginfod for this session? (y or [n]) y
+Debuginfod has been enabled.
+To make this setting permanent, add 'set debuginfod enabled on' to .gdbinit.
+[Thread debugging using libthread_db enabled]
+Using host libthread_db library "/lib/aarch64-linux-gnu/libthread_db.so.1".
+[Inferior 1 (process 79091) exited normally]
+(gdb) 
+
