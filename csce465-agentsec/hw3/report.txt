@@ -61,6 +61,11 @@ Stack level 0, frame at 0xffffffffeb10:
 (gdb) x/gx 0xffffffffea78
   0xffffffffea78: 0x0000000000400b48
 
+Since the return address is pushed to the stack after 0xffffffffeb10, that means it's located at 0xffffffffeb18
+
 anna_s@anna-465:~/465-hw3/csce465-agentsec/hw3$ ./src/legacy_log_parser inbox/payload.bin
 win: fopen /opt/agentsec/decoy.txt: Permission denied
 anna_s@anna-465:~/465-hw3/csce465-agentsec/hw3$ 
+
+
+TASK 2
