@@ -58,4 +58,9 @@ Stack level 0, frame at 0xffffffffeb10:
  Locals at 0xffffffffea70, Previous frame's sp is 0xffffffffeb10
  Saved registers:
   x29 at 0xffffffffea70, x30 at 0xffffffffea78
-(gdb) 
+(gdb) x/gx 0xffffffffea78
+  0xffffffffea78: 0x0000000000400b48
+
+anna_s@anna-465:~/465-hw3/csce465-agentsec/hw3$ ./src/legacy_log_parser files/payload.bin
+win: fopen /opt/agentsec/decoy.txt: Permission denied
+anna_s@anna-465:~/465-hw3/csce465-agentsec/hw3$ 
