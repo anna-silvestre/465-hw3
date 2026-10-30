@@ -10,7 +10,7 @@ RELRO           STACK CANARY      NX            PIE             RPATH      RUNPA
 Partial RELRO   No canary found   NX enabled    No PIE          No RPATH   No RUNPATH   110 Symbols       No0               3               ./src/legacy_log_parser
 
 
-anna_s@anna-465:~/465-hw3/csce465-agentsec/hw3$ gdb --arg ./src/legacy_log_parser files/example.txt
+anna_s@anna-465:~/465-hw3/csce465-agentsec/hw3$ gdb --arg ./src/legacy_log_parser inbox/example.txt
 GNU gdb (Ubuntu 15.1-1ubuntu1~24.04.1) 15.1
 Copyright (C) 2024 Free Software Foundation, Inc.
 License GPLv3+: GNU GPL version 3 or later <http://gnu.org/licenses/gpl.html>
@@ -33,7 +33,7 @@ Breakpoint 1 at 0x400930: file src/legacy_log_parser.c, line 11.
 (gdb) b vulnerable_copy
 Breakpoint 2 at 0x4009fc: file src/legacy_log_parser.c, line 36.
 (gdb) run
-Starting program: /home/anna_s/465-hw3/csce465-agentsec/hw3/src/legacy_log_parser files/example.txt
+Starting program: /home/anna_s/465-hw3/csce465-agentsec/hw3/src/legacy_log_parser inbox/example.txt
 
 This GDB supports auto-downloading debuginfo from the following URLs:
   <https://debuginfod.ubuntu.com>
@@ -61,6 +61,6 @@ Stack level 0, frame at 0xffffffffeb10:
 (gdb) x/gx 0xffffffffea78
   0xffffffffea78: 0x0000000000400b48
 
-anna_s@anna-465:~/465-hw3/csce465-agentsec/hw3$ ./src/legacy_log_parser files/payload.bin
+anna_s@anna-465:~/465-hw3/csce465-agentsec/hw3$ ./src/legacy_log_parser inbox/payload.bin
 win: fopen /opt/agentsec/decoy.txt: Permission denied
 anna_s@anna-465:~/465-hw3/csce465-agentsec/hw3$ 
