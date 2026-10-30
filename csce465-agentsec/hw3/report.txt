@@ -68,4 +68,31 @@ win: fopen /opt/agentsec/decoy.txt: Permission denied
 anna_s@anna-465:~/465-hw3/csce465-agentsec/hw3$ 
 
 
+
+Matt's gdb run
+
+(gdb) p/x &buf
+$3 = 0x7fffffffdb20
+(gdb) p/x $rbp+8
+$4 = 0x7fffffffdba8
+(gdb) p/x win
+$5 = 0x401256
+(gdb) info frame
+Stack level 0, frame at 0x7fffffffdbb0:
+ rip = 0x401355 in vulnerable_copy (./src/legacy_log_parser.c:36); saved rip = 0x4014c9
+ called by frame at 0x7fffffffdbf0
+ source language c.
+ Arglist at 0x7fffffffdba0, args: input=0x405480 "asdfjkl;", n=8
+ Locals at 0x7fffffffdba0, Previous frame's sp is 0x7fffffffdbb0
+ Saved registers:
+  rbp at 0x7fffffffdba0, rip at 0x7fffffffdba8
+
+
+Buffer Address: 0x7fffffffdb20
+Saved Return address location: 0x7fffffffdba8
+Offset: 136 bytes
+Original Return Address: 0x4014c9
+win() address: 0x401256
+
+
 TASK 2
