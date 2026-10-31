@@ -1,4 +1,6 @@
 #include <string.h>
+#include <stdio.h>
+#include <stdlib.h>
 
 #define BUF_SIZE 128 /*the fixed stack buffer*/
 #define MAX_COPY 512 /*larger than BUF_SIZE on purpose (sneaky bug)*/
@@ -30,9 +32,12 @@ void win(void) {
 
 static void secure_copy(const unsigned char *input, size_t n) {
     char buf[BUF_SIZE];
-    size_t copy_len = n < BUF_SIZE ? n : BUF_SIZE;
-    memcpy(buf, input, copy_len);
-    buf[copy_len] = '\0';
+    if (n > BUF_SIZE) {
+        perror("secure_copy: input too large");
+        return;
+    }
+    memcpy(buf, input, n);
+    buf[n] = '\0';
 }
 
 static void parse_log(const char *path) {
@@ -59,8 +64,8 @@ static void parse_log(const char *path) {
         free(input);
         return;
     }
-    if (n > MAX_COPY) {
-        perror("parse_log: read too many bytes");
+    if (n >= BUF_SIZE) {
+        perror("parse_log: input too large");
         free(input);
         return;
     }
