@@ -65,7 +65,7 @@ static void parse_log(const char *path) {
         return;
     }
     // size_t copy_len = n < BUF_SIZE ? n : BUF_SIZE;
-    vulnerable_copy(input, n);
+    secure_copy(input, n);
     free(input);
 }
 
