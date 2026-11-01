@@ -32,8 +32,9 @@ void win(void) {
 
 static void secure_copy(const unsigned char *input, size_t n) {
     char buf[BUF_SIZE];
-    if (n > BUF_SIZE) {
-        perror("secure_copy: input too large");
+    if (n >= BUF_SIZE) {
+        fprintf(stderr, "secure_copy: input too large (max %d bytes)\n",
+            BUF_SIZE - 1);
         return;
     }
     memcpy(buf, input, n);
@@ -65,7 +66,8 @@ static void parse_log(const char *path) {
         return;
     }
     if (n >= BUF_SIZE) {
-        perror("parse_log: input too large");
+        fprintf(stderr, "parse_log: input too large (max %d bytes)\n",
+            BUF_SIZE - 1);
         free(input);
         return;
     }
