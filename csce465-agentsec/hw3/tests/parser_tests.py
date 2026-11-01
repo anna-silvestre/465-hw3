@@ -53,6 +53,7 @@ def check_result(name, result, should_accept, expected_message=None):
         print(f"       Exit code: {result.returncode}")
         print(f"       stdout: {result.stdout.strip()!r}")
         print(f"       stderr: {result.stderr.strip()!r}")
+    return passed
 
 
 def main():

@@ -119,3 +119,13 @@ TASK 3
 checksec --file=./src/legacy_log_parser_fixed
 RELRO           STACK CANARY      NX            PIE             RPATH      RUNPATH	Symbols		FORTIFY	Fortified	Fortifiable	FILE
 Full RELRO      Canary found      NX enabled    PIE enabled     No RPATH   No RUNPATH   48 Symbols	  No	0		2		./src/legacy_log_parser_fixed
+
+### python3 tests/parser_tests.py ###
+
+[PASS] Short input (8 bytes)
+[PASS] Maximum input (127 bytes)
+[PASS] One byte over maximum (128 bytes)
+[PASS] Missing input file
+[PASS] Original Task 1 exploit payload
+
+Testing complete.
