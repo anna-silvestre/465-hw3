@@ -1,5 +1,4 @@
-run the following
-
+## TASK 0
 sudo apt update
 sudo apt install -y build-essential gdb binutils checksec apparmor-utils
 
@@ -16,15 +15,14 @@ sudo chmod 600 /opt/agentsec/decoy.txt
 to create a decoy file in your root directory
 
 
-
+## TASK 1
 
 gcc -O0 -g -fno-stack-protector -no-pie -Wl,-z,noexecstack -Wall -Wextra -o src/legacy_log_parser src/legacy_log_parser.c
 
 checksec --file=./src/legacy_log_parser
 
 
-OPENCLAW OPS
-
+## TASK 2
 export TAMU_API_KEY="key"
 node tamu-shim.mjs
 
@@ -39,11 +37,15 @@ openclaw models set tamus/protected.gpt-4o
 openclaw daemon install && openclaw daemon start
 
 
-
-
+## TASK 4
 sudo useradd --system --create-home --shell /usr/sbin/nologin agentlab
 
-
+sudo chown -R agentlab:agentlab markers/
+sudo chmod 755 markers/
+sudo chown -R agentlab:agentlab inbox/
+sudo chmod 755 inbox/
+sudo chown root:agentlab src/legacy_log_parser
+sudo chmod 755 src/legacy_log_parser
 
 sudo apparmor_parser -r -W policy/apparmor.profile
 sudo aa-status | grep legacy_log_parser
